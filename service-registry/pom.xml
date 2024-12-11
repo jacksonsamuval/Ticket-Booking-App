@@ -64,6 +64,20 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+<!--			JIB-->
+<!--			<plugin>-->
+<!--				<groupId>com.google.cloud.tools</groupId>-->
+<!--				<artifactId>jib-maven-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<from>-->
+<!--						<image>openjdk:17-slim</image>-->
+<!--					</from>-->
+<!--					<to>-->
+<!--						<image>registry.hub.docker.com/cjacksonsamuval/serviceregistry</image>-->
+<!--						<tags>${project.version}</tags>-->
+<!--					</to>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

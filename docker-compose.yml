@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  SERVICEREGISTRY:
+    image: 'cjacksonsamuval/serviceregistry:0.0.1'
+    container_name: SERVICEREGISTRY
+    ports:
+      - '8765:8765'
+
+  CONFIGSERVER:
+    image: 'cjacksonsamuval/configserver:0.0.1'
+    container_name: CONFIGSERVER
+    ports:
+      - '8088:8088'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://SERVICEREGISTRY:8765/eureka/
+    depends_on:
+      - SERVICEREGISTRY
+
+  APIGATEWAY:
+    image: 'cjacksonsamuval/apigateway:latest'
+    container_name: APIGATEWAY
+    ports:
+      - '8010:8010'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://SERVICEREGISTRY:8765/eureka/
+      - CONFIG_SERVER_URL=CONFIGSERVER
+
+  PASSENGERSERVICE:
+    image: 'cjacksonsamuval/passengerservice:0.0.1'
+    container_name: PASSENGERSERVICE
+    ports:
+      - '8090:8090'
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://SERVICEREGISTRY:8765/eureka/
+      - CONFIG_SERVER_URL=CONFIGSERVER
